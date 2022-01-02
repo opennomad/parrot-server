@@ -26,13 +26,18 @@ function root(req, res) {
 exports.root = root;
 
 /* the debug endpoint */
-function debug(req, res) {
-  var body  = JSON.stringify(req.body);
-  var query =  JSON.stringify(req.query);
-  log.info('/debug: body=' + body + ' query=' + query);
-  return res.status(200).send('Body: ' + body + ' Query:' + query);
+function echo(req, res) {
+  let payload;
+  if (req.method == 'POST') {
+    payload = JSON.stringify(req.body);
+  } else if(req.method == 'GET') {
+    payload =  JSON.stringify(req.query);
+  }
+  // TODO: limit the size of the payload being logged
+  log.info('/debug: ' + req.method + ' and payload ' + payload);
+  return res.status(200).send(payload);
 }
-exports.debug = debug;
+exports.echo = echo;
 
 /* the pause endpoint */
 function pause(req, res) {
@@ -59,7 +64,7 @@ function headers(req, res) {
 }
 exports.headers = headers;
 
-/* the upload endpoint */
+// the upload endpoint
 function upload(req, res) {
   let file = req.file;
 
