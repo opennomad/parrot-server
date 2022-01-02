@@ -79,3 +79,81 @@ describe('endpoint: /pause', () => {
   });
 });
 
+describe('endpoint: /headers', () => {
+  test('GET /headers (default)', () => {
+    app.all('/headers', routes.headers);
+    return request(server).get('/headers').then(data => {
+      expect(data.status).toBe(200);
+      expect(data.headers.connection).toBe('close');
+    });
+  });
+
+  test('POST /headers (default)', () => {
+    app.all('/headers', routes.headers);
+    return request(server).post('/headers').then(data => {
+      expect(data.status).toBe(200);
+      expect(data.headers.connection).toBe('close');
+    });
+  });
+
+  test('GET /headers (added header)', () => {
+    app.all('/headers', routes.headers);
+    return request(server)
+      .get('/headers')
+      .set('parrot', 'squawk')
+      .then(data => {
+        expect(data.status).toBe(200);
+        expect(data.headers.connection).toBe('close');
+      });
+  });
+
+  test('POST /headers (added header)', () => {
+    app.all('/headers', routes.headers);
+    return request(server)
+      .post('/headers')
+      .set('parrot', 'squawk')
+      .then(data => {
+        expect(data.status).toBe(200);
+        expect(data.headers.connection).toBe('close');
+      });
+  });
+});
+
+describe('endpoint: /echo', () => {
+  test('GET /echo (empty)', () => {
+    app.all('/echo', routes.echo);
+    return request(server).get('/echo').then(data => {
+      expect(data.status).toBe(200);
+      expect(data.text).toBe('{}');
+    });
+  });
+
+  test('POST /echo (empty)', () => {
+    app.all('/echo', routes.echo);
+    return request(server).post('/echo').then(data => {
+      expect(data.status).toBe(200);
+      expect(data.text).toBe('{}');
+    });
+  });
+
+  test('GET /echo (added header)', () => {
+    app.all('/echo', routes.echo);
+    return request(server)
+      .get('/echo?parrot=squawk')
+      .then(data => {
+        expect(data.status).toBe(200);
+        expect(data.text).toBe('{"parrot":"squawk"}');
+      });
+  });
+
+  test('POST /echo (added header)', () => {
+    app.all('/echo', routes.echo);
+    return request(server)
+      .post('/echo')
+      .send({'parrot': 'squawk'})
+      .then(data => {
+        expect(data.status).toBe(200);
+        expect(data.text).toBe('{"parrot":"squawk"}');
+      });
+  });
+});
