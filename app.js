@@ -19,35 +19,24 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// the root endpoint
+app.all('/', routes.root);
+
 // health endpoint
-app.all('/health', (req, res) => {
-  return routes.health(req, res);
-});
-
-// app.route('/headers')
-//   .get(
-app.all('/', (req, res) => {
-  return routes.root(req, res);
-});
+app.all('/health', routes.health);
 
 // pause endpoint
-app.all('/pause', (req, res) => {
-  routes.pause(req, res);
-});
+app.all('/pause', routes.pause);
 
-// pause endpoint
-app.all('/headers', (req, res) => {
-  routes.header(req, res);
-});
+// headers endpoint
+app.all('/headers', routes.headers);
+//
+// echo endpoint
+app.all('/echo', routes.echo);
 
 // upload endpoint
 app.all('/upload', upload.single('file'), (req, res) => {
   routes.upload(req, res);
-});
-
-// debug endpoint
-app.all('/debug', (req, res) => {
-  routes.debug(req, res);
 });
 
 
