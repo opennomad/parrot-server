@@ -22,7 +22,7 @@ exports.health = health;
 function root(req, res) {
   log.info('/ (' + req.method + ')');
   // TODO: make this print a welcome page
-  return res.status(200).send('Try passing a JSON payload with the sleep period defined in ms:\n{sleep: 2000}\nOther parameters may be added and will be echoed back, but are not used.');
+  return res.status(200).send('Welcome to the Parrot Server');
 }
 exports.root = root;
 
