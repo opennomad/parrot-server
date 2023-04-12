@@ -29,20 +29,29 @@ exports.root = root;
 /* the echo endpoint */
 function echo(req, res) {
   let payload;
+  let status=200;
   if (req.method == 'POST') {
     payload = JSON.stringify(req.body);
+    console.log('MJLERT POST');
   } else if(req.method == 'GET') {
     payload =  JSON.stringify(req.query);
+    console.log('MJLERT GET');
+  } else {
+    console.log('MJLERT DELETE');
+    payload = '{"parrot":"not implemented"}';
+    status  = 501;
   }
   // TODO: limit the size of the payload being logged
   log.info('/echo (' + req.method + ') and payload ' + payload);
-  return res.status(200).send(payload);
+  return res.status(status).send(payload);
 }
 exports.echo = echo;
 
 /* the pause endpoint */
 function pause(req, res) {
   let time_to_sleep = 2;
+  let status = 200;
+  let payload;
   if (req.method == 'POST' && req.body.seconds) {
     time_to_sleep = req.body.seconds;
   } else if(req.method == 'GET' && req.query.seconds) {
@@ -52,8 +61,9 @@ function pause(req, res) {
 
   // multiply by 1000 since sleep is expecting ms
   sleep(time_to_sleep * 1000).then(function() {
+    payload = 'Pause complete after ' + time_to_sleep + ' seconds';
     log.info('/pause (' + req.method + ') complete after ' + time_to_sleep + 's');
-    return res.status(200).send('Pause complete after ' + time_to_sleep + ' seconds');
+    return res.status(status).send(payload);
   });
 }
 exports.pause = pause;

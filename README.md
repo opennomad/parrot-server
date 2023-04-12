@@ -36,6 +36,7 @@ $ curl -H 'Host: foo.bar.com' -H 'x-my-special-field: monkeys' localhost:8000/he
   "user-agent": "curl/7.74.0",
   "accept": "*/*",
   "x-my-special-field": "monkeys"
+}
 ```
 
 ### /echo

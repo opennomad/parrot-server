@@ -157,6 +157,13 @@ describe('endpoint: /echo', () => {
         expect(data.text).toBe('{"parrot":"squawk"}');
       });
   });
+
+  test('DELETE /echo (empty)', () => {
+    return request(server).delete('/echo').then(data => {
+      expect(data.status).toBe(501);
+      expect(data.text).toBe('{"parrot":"not implemented"}');
+    });
+  });
 });
 
 describe('endpoint: /upload', () => {
