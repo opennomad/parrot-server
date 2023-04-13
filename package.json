@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "jest --maxWorkers=2",
+    "test": "jest --maxWorkers=2 --forceExit --detectOpenHandles",
     "start": "nodejs app.js"
   },
   "author": "",
