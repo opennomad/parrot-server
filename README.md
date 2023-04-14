@@ -1,5 +1,6 @@
 ![Node Build](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yml/badge.svg)
 ![Docker Build](https://github.com/opennomad/parrot-server/actions/workflows/docker-image.yml/badge.svg)
+![Eslint](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yml/badge.svg)
 
 The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additonal features. It's purpose is to aid in the debugging of service accessibiltiy, header information, and timeouts.
 
@@ -99,3 +100,5 @@ resolv.conf has been deleted
 
 # Future ideas
 - add proxy ability to fetch another URL
+- test DNS resolution
+- test for reachability (open port)
