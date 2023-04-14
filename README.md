@@ -1,6 +1,8 @@
 ![Node Build](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yml/badge.svg)
 ![Docker Build](https://github.com/opennomad/parrot-server/actions/workflows/docker-image.yml/badge.svg)
 ![Eslint](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yml/badge.svg)
+![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish-github-packages.yml/badge.svg)
+![Docker Publish](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yml/badge.svg)
 
 The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additonal features. It's purpose is to aid in the debugging of service accessibiltiy, header information, and timeouts.
 
@@ -14,7 +16,7 @@ The default port for the parrot-server is 8000. To override this the `PORT` envi
 PORT=8000 node app.js 
 ```
 
-##  ... in docker
+## ... in docker
 
 ```sh
 docker build -t parrot-server .
@@ -90,7 +92,7 @@ $ curl -XGET localhost:8000/upload
   "resolv.conf"
 ]%
 
-# get the File
+# get the file
 $ curl -XGET localhost:8000/upload/resolv.conf
 
 # delete the file
