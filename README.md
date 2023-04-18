@@ -1,8 +1,9 @@
-![Eslint](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yaml/badge.svg)
-![Node Build](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yaml/badge.svg)
-![Docker Build](https://github.com/opennomad/parrot-server/actions/workflows/docker.yaml/badge.svg)
+[![ESLint](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yaml)
+[![Node.js CI](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yaml)
+[![Docker CI](https://github.com/opennomad/parrot-server/actions/workflows/docker.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/docker.yaml)
+[![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml)
 ![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml/badge.svg)
-![Docker Publish](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml/badge.svg)
+[![Docker Package](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml)
 
 The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additonal features. Its purpose is to aid in the debugging of service accessibiltiy, header information, and timeouts.
 
