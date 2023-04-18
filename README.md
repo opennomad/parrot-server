@@ -1,10 +1,10 @@
-![Node Build](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yml/badge.svg)
-![Docker Build](https://github.com/opennomad/parrot-server/actions/workflows/docker-image.yml/badge.svg)
-![Eslint](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yml/badge.svg)
-![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish-github-packages.yml/badge.svg)
-![Docker Publish](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yml/badge.svg)
+![Eslint](https://github.com/opennomad/parrot-server/actions/workflows/eslint.yaml/badge.svg)
+![Node Build](https://github.com/opennomad/parrot-server/actions/workflows/node.js.yaml/badge.svg)
+![Docker Build](https://github.com/opennomad/parrot-server/actions/workflows/docker.yaml/badge.svg)
+![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml/badge.svg)
+![Docker Publish](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml/badge.svg)
 
-The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additonal features. It's purpose is to aid in the debugging of service accessibiltiy, header information, and timeouts.
+The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additonal features. Its purpose is to aid in the debugging of service accessibiltiy, header information, and timeouts.
 
 # Running the server ...
 
@@ -13,12 +13,23 @@ The default port for the parrot-server is 8000. To override this the `PORT` envi
 ## ... on the command line
 
 ```sh
+git clone https://github.com/opennomad/parrot-server.git
+cd parrot-server
 PORT=8000 node app.js 
 ```
 
 ## ... in docker
 
+### Docker image from GitHub:
 ```sh
+docker pull ghcr.io/opennomad/parrot-server
+docker run -p 8000:8000 ghcr.io/opennomad/parrot-server
+```
+
+### Build your own Docker image
+```sh
+git clone https://github.com/opennomad/parrot-server.git
+cd parrot-server
 docker build -t parrot-server .
 export PORT=8000
 docker run -d --expose ${PORT} -p${PORT}:${PORT} parrot-server

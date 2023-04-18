@@ -1,2 +1,9 @@
 node_modules/
 test/
+.envrc
+.gitignore
+jest.config.js
+.eslintrc.yaml
+.git/
+.githug/
+.dockerignore
