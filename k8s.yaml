@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: parrot-server
+spec:
+  selector:
+    matchLabels:
+      run: parrot-server
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: parrot-server
+    spec:
+      containers:
+      - name: parrot-server
+        image: ghcr.io/opennomad/parrot-server
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: parrot-server
+  labels:
+    run: parrot-server
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    protocol: TCP
+  selector:
+    run: parrot-server
