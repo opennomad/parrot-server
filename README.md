@@ -4,48 +4,42 @@
 [![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml)
 [![Docker Package](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml)
 
-The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additonal features. Its purpose is to aid in the debugging of service accessibiltiy, header information, and timeouts.
+The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additional features. Its purpose is to aid in the debugging of 
+- service accessibility
+- header information
+- timeouts
 
-# Running the server ...
+## Running the parrot-server
 
-The default port for the parrot-server is 8000. To override this the `PORT` environment variable can be set.
+The primary use is to run via a container in Docker or Kubernetes:
 
-## ... on the command line
-
-```sh
-git clone https://github.com/opennomad/parrot-server.git
-cd parrot-server
-PORT=8000 node app.js 
-```
-
-## ... in docker
-
-### Docker image from GitHub:
 ```sh
 docker pull ghcr.io/opennomad/parrot-server
 docker run -p 8000:8000 ghcr.io/opennomad/parrot-server
 ```
+or
 
-### Build your own Docker image
 ```sh
-git clone https://github.com/opennomad/parrot-server.git
-cd parrot-server
-docker build -t parrot-server .
-export PORT=8000
-docker run -d --expose ${PORT} -p${PORT}:${PORT} parrot-server
+curl -O https://raw.githubusercontent.com/opennomad/parrot-server/main/k8s.yaml
+kubectl apply -f k8s.yaml
 ```
 
-# ... in Kubernetes
+See [Install Options](./docs/install_options.md) or other ways of running the service, including locally.
 
-## Features
+## Features and usage
 
 
 ### /health
-The `/health` endpoint returns `200` and `OK`.
+The `/health` endpoint returns `200` and `OK`. Always start here to make sure the service is reachable.
+
+```sh
+$ curl localhost:8000/health
+OK
+```
 
 ### /headers
 
-The `/headers` endpoint returns all headers that made it to the service.
+The `/headers` endpoint returns all headers that made it to the service. This allows testing of header transformations, stripping, etc.
 ```
 $ curl -H 'Host: foo.bar.com' -H 'x-my-special-field: monkeys' localhost:8000/headers
 {
@@ -57,7 +51,7 @@ $ curl -H 'Host: foo.bar.com' -H 'x-my-special-field: monkeys' localhost:8000/he
 ```
 
 ### /echo
-The `/echo` endpoint will return the query string or body received
+The `/echo` endpoint will return the query string or body received. This also enables testing of transformations, etc of requests. 
 
 ```
 # query string
@@ -71,8 +65,7 @@ curl 'localhost:8000/echo' -d'test=foo' -d'test=bar'
 
 ### /pause
 
-The `/pause` endpoint will sleep for the specified length of time
-/upload
+The `/pause` endpoint will sleep for the specified length of time. This is useful for testing timeouts. When no response comes back, a timeout has been exceeded. Test the `/health` endpoint first to ensure the service is reachable.
 
 ```
 # using query parameter
@@ -85,7 +78,9 @@ Pause complete after 5 seconds%
 ```
 
 ### /upload
-The `/upload` endpoint allows uploading, listing, fetching, and deleting of files.
+The `/upload` endpoint allows uploading, listing, fetching, and deleting of files. This can be used to test if there are upload limits in place.
+
+**Note: This is not intended to be a file server. There are no security or safety checks. There is no authentication. This is purely for debugging purposes.**
 
 ```sh
 # upload the file
