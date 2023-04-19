@@ -5,13 +5,19 @@
   "main": "app.js",
   "scripts": {
     "test": "jest",
-    "start": "nodejs app.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git://github.com/opennomad/parrot-server.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/opennomad"
+  },
+  "bin": {
+    "parrot": "./app.js"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",

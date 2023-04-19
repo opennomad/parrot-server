@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*eslint no-undef: 0 */
 const express = require('express');
 const fileUpload = require('express-fileupload');
