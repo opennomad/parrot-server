@@ -4,14 +4,17 @@
 [![NPM Package](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/npm-publish.yaml)
 [![Docker Package](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml/badge.svg)](https://github.com/opennomad/parrot-server/actions/workflows/docker-publish.yaml)
 
-The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additional features. Its purpose is to aid in the debugging of 
+The parrot-server is a bit like the [Echo-Server](https://ealenn.github.io/Echo-Server/), but with additional features. Its purpose is to aid in the debugging in containerized environments of 
+
 - service accessibility
 - header information
 - timeouts
+- file upload limits
+
+The primary use-case is running via a container in [Docker](https://www.docker.com/) or [Kubernetes](https://kubernetes.io/), but it can also be run directly from the command line. It has also been tested on [Minikube](https://minikube.sigs.k8s.io/docs/).
+
 
 ## Running the parrot-server
-
-The primary use is to run via a container in Docker or Kubernetes:
 
 ```sh
 docker pull ghcr.io/opennomad/parrot-server
