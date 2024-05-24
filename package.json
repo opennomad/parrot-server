@@ -17,7 +17,7 @@
     "registry": "https://npm.pkg.github.com/opennomad"
   },
   "bin": {
-    "parrot-server": "./app.js"
+    "parrot-server": "app.js"
   },
   "devDependencies": {
     "@babel/core": "^7.22.9",
